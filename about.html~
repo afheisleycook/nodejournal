@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>about project</title>
+<head>
+<style>
+     header {
+         background: grey;
+         color: white;
+         font-weight: bolder;
+         font-family: 'Courier New', Courier, monospace;
+         
+     }
+     #tools {
+         position: relative;
+         top:14px;
+         color:red;
+         list-style-type:disc;
+
+         
+     }
+     .tools {
+         position: relative;
+         top: 10px;
+     }
+     .structures {
+         position: relative;
+         top: 30px;
+         color: blue;
+	 
+     }
+     .hardware {
+	 position: relative;
+	 top:50px;
+	 color:green;
+     }
+     footer
+     {
+	 position:relative;
+	 top:70px;
+	 color:orange;
+     }
+     
+</style>
+</head>
+<body>
+<header>
+journal project
+</header> 
+<nav>
+    <ul>
+        <li>
+            <a href="#tools">tools</a>
+        </li>
+        <li>
+            <a href="#structures">structures</a>
+        </li>
+        <li>
+            <a href="#hardware">hardware</a>
+        </li>
+    </ul>
+</nav>
+<b>table of contents</b>
+<ol>
+    <li>tools</li>
+    <li>structure</li>
+    <li>hardware</li>
+
+</ol>
+
+<div class="tools">
+    <strong>project tools</strong>
+<ul id="tools">
+  <li>ajax</li>
+  <li>nodejs</li>
+  <li>javascript</li>
+  <li>sqlite3 previously mysql but that was deprecated to do nodejs not doing authenctation well and time contraints</li>
+  <li>pug is here but not used due to complications</li>
+  <li>i made an api to work with ajax</li>
+</ul>
+</div>
+<div class="structures">
+    <strong>structures</strong>
+<ul id="structures">
+    <li>the backend is nodejs sqlite3 and apachhe </li>
+    <li>middle where  express and json</li>
+    <li>frontend is html css and javascript</li>
+</ul>
+</div>
+<div class="hardware">
+<strong>hardware</strong>
+<ul id="hardware">
+    <li>dell laptop running linux ubuntu  and 4 gigs of ram and kde5</li>
+    <li> ubuntu 22.10</li>
+</ul>
+</div>
+<footer>
+  <quote> computer science smc javascript project demo</quote>
+</footer>
+</body>
+</html>
