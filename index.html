@@ -71,16 +71,10 @@ background: grey;
     function loadnoites() {
     const xhttp = new XMLHttpRequest();
     xhttp.onload  = function() {
-        let data = xhttp.responseText;
-        for (let i = 0; i < data.length; i++) {
-            let notedesc = document.createElement("p");
-            
-            if(data.search("NOTES_TITLE")) {
-                notedesc.innerText = data[i];
-            }
-            
-            document.getElementById("content").appendChild(notedesc);
-        }
+        let p = document.createElement("p");
+        let data = xhttp.responseText.split(".");
+        $(p).add("<p>");
+        
     }
     xhttp.open("GET","http://localhost:8083/journal/api",true);
     xhttp.send();
@@ -94,10 +88,7 @@ function search() {
         for (let i = 0; i < data.length; i++) {
             let notedesc = document.createElement("p");
             
-            if(data.search("NOTES_TITLE")) {
-                notedesc.innerText = data[i];
-            }
-            
+          
             document.getElementById("content").appendChild(notedesc);
         }
     }
