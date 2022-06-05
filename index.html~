@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <title> journal app</title>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta description="description" content="journal site">
+<style>
+main {
+    background: grey;
+    width: max-content;
+}
+nav  ul  li  a {
+    display: inline-block;
+    padding: 4px;
+    border-bottom: black solid 4px;
+    
+}
+nav ul li {
+    
+    display:inline-block;
+    
+}
+header {
+    background: goldenrod;
+}
+</style>
+</head>
+<body>
+    <header>
+        journal site
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="/journal">home</a>
+            </li>
+            <li>
+                <a target="_blank" href="/journal/addform">add entry</a>
+            </li>
+	    <li>
+	      <form action="/journal/search/">
+		<input type="search">
+		<input type="submit" value="search">
+	      </form>
+	    </li>
+        </ul>
+    </nav>
+    <main>
+       <div id="content">
+        <!-- this should be rendered by ajax and javascript from the api-->   
+        </div>
+
+    </main>
+    <footer>
+        <a href="https://github.com/afheisleycook">my profile</a>
+        Thank you for viewing my project
+    </footer>
+</body>
+<script>
+    let main = document.getElementById("content");
+    console.log(main);
+    var post = new XMLHttpRequest();
+    post.open("GET","http://bedroom:8083/journal/api");
+    post.send();
+    let posttitle = document.createElement("h3");
+    posttitle.innerText = post.responseText;
+    let postdesc = document.createElement("p");
+    main.appendChild(posttitle);
+    main.appendChild(postdesc);
+    
+</script>
+</html>

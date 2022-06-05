@@ -34,7 +34,7 @@ background: grey;
 </head>
 <body onload="loadnoites();">
     <header>
-        journal site
+        journal site search result
     </header>
     <nav>
     <ul>
@@ -48,8 +48,7 @@ background: grey;
             <a href="/journal/details">about</a>
         </li>
     <li>
-        <!-- searchs posts from database by title-->
-        <form method="get" onsubmit="search();">
+        <form action="/journal/search/">
             <input type="text" name="titile">
             <input type="submit" value="search">
         </form>
@@ -64,7 +63,7 @@ background: grey;
     </main>
     <footer>
         <a href="https://github.com/afheisleycook">my profile</a>
-        Thank you for viewing my project
+        Thank you for viewin for visiting my project
     </footer>
 </body>
 <script>
@@ -76,17 +75,19 @@ background: grey;
             let notedesc = document.createElement("p");
             
             if(data.search("NOTES_TITLE")) {
-                notedesc.innerText = data[i];
+                notetitle.innerText = data[i];
             }
             
-            document.getElementById("content").appendChild(notedesc);
+            document.getElementById("content").appendChild(notetitle);
         }
     }
-    xhttp.open("GET","http://localhost:8083/journal/api",true);
+    xhttp.open("GET","http://localhost:8083/journal/search/title?",true);
     xhttp.send();
 }
-function search() {
+
     
+function search() {
+    pt>
     function loadnoites() {
     const xhttp = new XMLHttpRequest();
     xhttp.onload  = function() {
@@ -95,10 +96,10 @@ function search() {
             let notedesc = document.createElement("p");
             
             if(data.search("NOTES_TITLE")) {
-                notedesc.innerText = data[i];
+                notetitle.innerText = data[i];
             }
             
-            document.getElementById("content").appendChild(notedesc);
+            document.getElementById("content").appendChild(notetitle);
         }
     }
     xhttp.open("GET","http://localhost:8083/journal/search",true);
@@ -106,7 +107,6 @@ function search() {
 }
 } 
 
-    
     
 </script>
 </html>

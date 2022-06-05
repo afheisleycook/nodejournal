@@ -26,22 +26,27 @@
          position: relative;
          top: 30px;
          color: blue;
-	 
      }
      .hardware {
-	 position: relative;
-	 top:50px;
-	 color:green;
+        position: relative;
+         top: 50px;
+         color: green;
+
      }
-     footer
-     {
-	 position:relative;
-	 top:70px;
-	 background:grey;
-	 color:white;
-	 
-     }
-     
+     nav  ul  li  a {
+    display: inline-block;
+    padding: 4px;
+    border-bottom: black solid 4px;
+    
+}
+nav ul li form {
+    display:inline-block;
+}
+nav ul li {
+    
+    display:inline-block;
+    
+}
 </style>
 </head>
 <body>
@@ -51,16 +56,23 @@ journal project
 <nav>
     <ul>
         <li>
-            <a href="#tools">tools</a>
+            <a href="/journal">home</a>
         </li>
         <li>
-            <a href="#structures">structures</a>
+            <a target="_blank" href="/journal/addform">add entry</a>
         </li>
-        <li>
-            <a href="#hardware">hardware</a>
-        </li>
+    </li>
+    <li>
+        <a href="/journal/details">about</a>
+    </li>
+    <li>
+        <form method="get" onsubmit="search();">
+            <input type="text" name="titile">
+            <input type="submit" value="search">
+        </form>
     </ul>
 </nav>
+<main>
 <b>table of contents</b>
 <ol>
     <li>tools</li>
@@ -79,8 +91,7 @@ journal project
   <li>pug is here but not used due to complications</li>
   <li>i made an api to work with ajax</li>
 </ul>
-</div>
-<div class="structures">
+</div> <div class="structures">
     <strong>structures</strong>
 <ul id="structures">
     <li>the backend is nodejs sqlite3 and apachhe </li>
@@ -95,8 +106,37 @@ journal project
     <li> ubuntu 22.10</li>
 </ul>
 </div>
+</main>
 <footer>
-  <quote> computer science smc javascript project demo</quote>
+    <footer>
+        <a href="https://github.com/afheisleycook">my profile</a>
+        Thank you for viewing my project
+    </footer>
+
 </footer>
+<script>
+    function search() {
+    pt>
+    function loadnoites() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload  = function() {
+        let data = xhttp.responseText;
+        for (let i = 0; i < data.length; i++) {
+            let notedesc = document.createElement("p");
+            
+            if(data.search("NOTES_TITLE")) {
+                notedesc.innerText = data[i];
+            }
+            
+            document.getElementById("content").appendChild(notedesc);
+        }
+    }
+    xhttp.open("GET","http://localhost:8083/journal/search",true);
+    xhttp.send();
+}
+} 
+
+    
+</script>
 </body>
 </html>

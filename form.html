@@ -6,9 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta description="description" content="journal site">
     <style>
-        form {
-            padding-right: 100pxl
+        main form {
+            padding-right: 100px;
+            background-color: gainsboro;
+            padding-top: 10px;
+            border: 4px solid blue;
+            border-radius: 10px;
         }
+        main form #addnote {
+            margin-left: 10px;
+            padding-left: -10px;
+            border-radius: 4px;
+            
+        }
+        nav  ul  li  a {
+    display: inline-block;
+    padding: 4px;
+    border-bottom: black solid 4px;
+    
+}
+nu ul li form {
+    display:inline-block;
+}
+nav ul li {
+    
+    display:inline-block;
+    
+}
+header {
+background: grey;
+         color: white;
+         font-weight: bolder;
+         font-family: 'Courier New', Courier, monospace;
+}
     </style>
 
 </head>
@@ -16,21 +46,45 @@
     <header>
         journal site
     </header>
+    <nav>
+    <ul>
+        <li>
+            <a href="/journal">home</a>
+        </li>
+        <li>
+            <a target="_blank" href="/journal/addform">add entry</a>
+        </li>
+        <li>
+            <a href="/journal/details">about</a>
+        </li>
+    <li>
+        <form method="get" onsubmit="search();">
+            <input type="text" name="titile">
+            <input type="submit" value="search">
+        </form>
+    </li>
+    </ul>
+</nav>
+<main>
     <main>
         <form method="post" action="/journal/add">
             <label for="title">title
-                <input id="title" type="text" name="title">
+                <input id="title" type="text" name="title" placeholder="enter a note title">
             </label>
             <br>
             <label for="title">description
-                <input id="description" type="text" name="descriptiontitle">
+                <textarea id="description"  name="description" placeholder="enter a note body"></textarea>
             </label>
             <br>
-            <input type="submit" value="submit">
+            <input id="addnote"  name="addnote"  type="submit" value="submit">
         </form>
 
     </main>
     <footer>
+        <footer>
+            <a href="https://github.com/afheisleycook">my profile</a>
+            Thank you for viewing my project
+        </footer>
     </footer>
 </body>
 <script>

@@ -6,11 +6,14 @@ app = express();
 app.all("/journal", function(req, res) {
     res.sendFile(path.join(__dirname+ "//index.html"));
 });
-app.get("/journal/search/:title:", function(req, res) {
-    let title = req.params.title;
-    let result = db.exec("select * from NOTES");
 
-    res.sendFile(path.join(__dirname+ "//index.html"));
+app.get("/journal/search/", function(req, res) {
+    let title = req.params.title;
+    let result = db.all("select * from NOTES where NOTES_TITLE=" + title + "",[],(err,rows)=>{
+	res.json(rows);
+    res.sendFile(path.join(__dirname+ "//results.html"));
+    });
+    
 });
 app.all("/", function(req, res) {
     res.redirect("/journal");
@@ -19,30 +22,25 @@ app.get("/journal/addform", function(req, res) {
     res.sendFile(path.join(__dirname+ "//form.html"));
 });
 app.post("/journal/add", function(req, res) {
-    try {
-        let title = req.body['title'];
-        let description = req.body['description'];
-        let tags = req.body['tags'];
-        db.all("insert into POSTS values('" + title + ",'" + description + "','" + tags + "')");
+        let note = req.body;
+        console.table(note);
+        /*
+        db.all("insert into POSTS values('" + note + ",'" +  + "','" + note[2] + "')");
         res.redirect("/journal");
-    } catch(Error) {
-
-        res.redirect("/error",Error);
-    }
-
+        */
 });
 app.get("/journal/details",function(req,res ) {
     res.sendFile(__dirname + "//about.html");
 });
 app.get("/journal/api/", function(req, res) {
     let result = db.all("select * from NOTES",[],(err,rows)=>{
-        res.send(rows);
+        res.json(rows);
 });
 
     
 });
 app.get("/journal/error", function(req, res) {
-    es.sendFile(path.join(__dirname+ "//error.html"));
+    res.sendFile(path.join(__dirname+ "//error.html"));
 });
 
 
