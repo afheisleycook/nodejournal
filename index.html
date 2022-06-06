@@ -1,11 +1,11 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<`=6b<b!`1=222DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
     <title> journal app</title>
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta description="description" content="journal site">
-    <script src=" https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src=" https://code.jquery.com/jquery-3.6.0.min.js"></script>y8ik
 <style>
 main {
     width: max-content;
@@ -32,7 +32,7 @@ background: grey;
 }
 </style>
 </head>
-<body onload="loadnoites();">
+<body onload="loadnotes();">
     <header>
         journal site
     </header>
@@ -68,20 +68,31 @@ background: grey;
     </footer>
 </body>
 <script>
-    function loadnoites() {
+    function loadnotes() {
     const xhttp = new XMLHttpRequest();
-    xhttp.onload  = function() {
-        let p = document.createElement("p");
-        let data = xhttp.responseText.split(".");
-        $(p).add("<p>");
-        
-    }
-    xhttp.open("GET","http://localhost:8083/journal/api",true);
-    xhttp.send();
+    const dbParam =JSON.stringify({table:"NOTES",limit:20})
+        xhttp.onload  = function() {
+            
+
+         data = JSON.parse(xhttp.responseText);
+                let content = document.getElementById("content");
+                for(let note in data) {
+
+            content.innerHTML += "<div class='note'>";
+            content.innerHTML += "<h1>" + data[note].title + "</h1>";
+            content.innerHTML += "<p>" + data[note].descrition + "</p>";
+            content.innerHTML += "</div>"; 
+        }
+        }
+        /*
+        change address to your server name
+        */
+    xhttp.open("GET","http://labserver:8083/journal/api",true);
+    xhttp.send("x=",dbParam);
 }
+
 function search() {
     
-    function loadnoites() {
     const xhttp = new XMLHttpRequest();
     xhttp.onload  = function() {
         let data = xhttp.responseText;
@@ -92,12 +103,9 @@ function search() {
             document.getElementById("content").appendChild(notedesc);
         }
     }
-    xhttp.open("GET","http://localhost:8083/journal/search",true);
-    xhttp.send();
 }
-} 
 
-    
+
     
 </script>
 </html>
