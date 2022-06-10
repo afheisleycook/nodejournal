@@ -69,6 +69,11 @@ background: grey;
 </body>
 <script>
     function loadnotes() {
+        let title = "hello";
+        let description = "there";
+        let tags = "hello";
+    /*
+    
     const xhttp = new XMLHttpRequest();
     const dbParam =JSON.stringify({table:"NOTES",limit:20})
         xhttp.onload  = function() {
@@ -86,9 +91,18 @@ background: grey;
         }
         /*
         change address to your server name
-        */
+        
     xhttp.open("GET","http://labserver:8083/journal/api",true);
     xhttp.send("x=",dbParam);
+    */
+        let content = document.getElementById("content");
+        let faketposttitle = document.createElement("h1");
+        let fakepostDescription = document.createElement("p");
+        faketposttitle.innertext = title;
+        fakepostDescription.innertext = description;
+        content.appendChild(faketposttitle);
+        content.appendChilld(fakepostDescription);
+        
 
 }
 
