@@ -1,30 +1,131 @@
-<!DOCTYPE html>
+<`=6b<b!`1=222DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-        <script src="notebook.js">
-        </script>
-        
-    </head>
-    <body>
+<head>
+    <title> journal app</title>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta description="description" content="journal site">
+    <script src=" https://code.jquery.com/jquery-3.6.0.min.js"></script>y8ik
+<style>
+main {
+    width: max-content;
+}
+nav  ul  li  a {
+    display: inline-block;
+    padding: 4px;
+    border-bottom: black solid 4px;
+    
+}
+nav ul li form {
+    display:inline-block;
+}
+nav ul li {
+    
+    display:inline-block;
+    
+}
+header {
+background: grey;
+         color: white;
+         font-weight: bolder;
+         font-family: 'Courier New', Courier, monospace;
+}
+</style>
+</head>
+<body onload="loadnotes();">
     <header>
+        journal site
     </header>
-    <main>
-        
-            <form onsubmit="add();">
-                <label for="task">
-             <input type="text" name="task" id="task">
-                </label>   
-            </form>
-            <ul id="tasklist">
-                
-            </ul>
-        </main>
-        <footer >
+    <nav>
+    <ul>
+        <li>
+            <a href="/journal">home</a>
+        </li>
+        <li>
+            <a target="_blank" href="/journal/addform">add entry</a>
+        </li>
+        <li>
+            <a href="/journal/details">about</a>
+        </li>
+    <li>
+        <!-- searchs posts from database by title-->
+        <form method="get" onsubmit="search();">
+            <input type="text" name="titile">
+            <input type="submit" value="search">
+        </form>
+    </li>
+    </ul>
+</nav>
+<main>
+       <div id="content">
+        <!-- this should be rendered by ajax and javascript from the api-->   
+        </div>
+
+    </main>
+    <footer>
+        <a href="https://github.com/afheisleycook">my profile</a>
+        Thank you for viewing my project
+    </footer>
+</body>
+<script>
+    function loadnotes() {
+    const xhttp = new XMLHttpRequest();
+    const dbParam =JSON.stringify({table:"NOTES",limit:20})
+        xhttp.onload  = function() {
             
-        </footer>
-    </body>
+
+         data = JSON.parse(xhttp.responseText);
+                let content = document.getElementById("content");
+                for(let note in data) {
+
+            content.innerHTML += "<div class='note'>";
+            content.innerHTML += "<h1>" + data[note].title + "</h1>";
+            content.innerHTML += "<p>" + data[note].descrition + "</p>";
+            content.innerHTML += "</div>"; 
+        }
+        }
+        /*
+        change address to your server name
+        */
+    xhttp.open("GET","http://labserver:8083/journal/api",true);
+    xhttp.send("x=",dbParam);
+
+}
+
+function search() {
+    /*
+    function goal shows the posts that match the title
+    start 
+        input
+            user variable title 
+        process
+            open db search db for note title match 
+               if match then
+                  set result to matchs in array or list data structure
+                if not match then
+                   set result to none
+        output:
+            print processes to display page bases on results use for loop if needed
+    
+                   
+                  
+
+    */
+    
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload  = function() {
+        // gets request call from api endpoint
+        let data = xhttp.responseText;
+        for (let i = 0; i < data.length; i++) {
+            let notedesc = document.createElement("p");
+            
+          
+            document.getElementById("content").appendChild(notedesc);
+        }
+    }
+}
+
+
+    
+</script>
 </html>
